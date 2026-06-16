@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local docs (kept out of the public repo)
+/PRODUCT-AUDIT.md
