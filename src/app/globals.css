@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --token-bg: #ffffff;
+  --token-bg-elev: #f6f7f8;
+  --token-bg-elev-2: #ffffff;
+  --token-fg: #0a0a0a;
+  --token-fg-muted: #5b5f66;
+  --token-fg-dim: #8a8f96;
+  --token-line: #e6e7eb;
+  --token-accent: #6366f1;
+  --token-accent-soft: #eef0ff;
+  --token-accent-ring: rgba(99, 102, 241, 0.45);
+  --token-ok: #16a34a;
+  --token-warn: #d97706;
+  --token-bad: #dc2626;
+  --token-shadow-pop:
+    0 2px 4px rgba(15, 17, 22, 0.04),
+    0 8px 24px rgba(15, 17, 22, 0.08);
+  --token-font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --token-font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
+.dark {
+  --token-bg: #0a0b0d;
+  --token-bg-elev: #15171b;
+  --token-bg-elev-2: #1c1f24;
+  --token-fg: #ededee;
+  --token-fg-muted: #a3a7ad;
+  --token-fg-dim: #6b7079;
+  --token-line: #262a31;
+  --token-accent: #818cf8;
+  --token-accent-soft: rgba(129, 140, 248, 0.12);
+  --token-accent-ring: rgba(129, 140, 248, 0.5);
+  --token-ok: #22c55e;
+  --token-warn: #f59e0b;
+  --token-bad: #f87171;
+  --token-shadow-pop:
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    0 12px 32px rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--token-bg);
+  --color-bg-elev: var(--token-bg-elev);
+  --color-bg-elev-2: var(--token-bg-elev-2);
+  --color-fg: var(--token-fg);
+  --color-fg-muted: var(--token-fg-muted);
+  --color-fg-dim: var(--token-fg-dim);
+  --color-line: var(--token-line);
+  --color-accent: var(--token-accent);
+  --color-accent-soft: var(--token-accent-soft);
+  --color-accent-ring: var(--token-accent-ring);
+  --color-ok: var(--token-ok);
+  --color-warn: var(--token-warn);
+  --color-bad: var(--token-bad);
+  --font-sans: var(--token-font-sans);
+  --font-mono: var(--token-font-mono);
+  --shadow-pop: var(--token-shadow-pop);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html,
+  body {
+    background: var(--token-bg);
+    color: var(--token-fg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--token-font-sans);
+  }
+
+  *,
+  *::before,
+  *::after {
+    border-color: var(--token-line);
+  }
+
+  ::selection {
+    background: var(--token-accent-soft);
+    color: var(--token-accent);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--token-line);
+    border-radius: 9999px;
+  }
 }
